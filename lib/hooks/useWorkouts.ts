@@ -7,6 +7,52 @@ import {
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 /**
+ * T001: Fetch workout batch for infinite scroll pagination
+ * Returns paginated workout data with metadata for next page
+ */
+export async function fetchWorkoutBatch(
+  offset: number,
+  limit: number,
+): Promise<{
+  workouts: Workout[];
+  nextOffset: number;
+  hasMore: boolean;
+}> {
+  try {
+    // Fetch IDs for this page
+    const ids = await getWorkoutIds(offset, limit);
+
+    // Fetch workouts in parallel
+    const workouts = await Promise.all(
+      ids.map((id) =>
+        getWorkoutById(id).catch((err) => {
+          console.error(`Failed to load workout ${id}:`, err);
+          return null;
+        }),
+      ),
+    );
+
+    // Filter out nulls and non-completed workouts
+    const validWorkouts = workouts
+      .filter((w): w is Workout => w !== null)
+      .filter((w) => w.status === "completed");
+
+    return {
+      workouts: validWorkouts,
+      nextOffset: offset + limit,
+      hasMore: ids.length === limit,
+    };
+  } catch (error) {
+    console.error("Error fetching workout batch:", error);
+    return {
+      workouts: [],
+      nextOffset: offset,
+      hasMore: false,
+    };
+  }
+}
+
+/**
  * Hook for managing workout history with pagination
  * T040: TanStack Query hook for workout list
  */
