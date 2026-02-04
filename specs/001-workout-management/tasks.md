@@ -30,13 +30,13 @@ Mobile single-project structure:
 
 **Purpose**: Project initialization and dependencies installation
 
-- [ ] T001 Install TanStack Query packages: `@tanstack/react-query` and `@tanstack/react-query-persist-client`
-- [ ] T002 Install AsyncStorage: `@react-native-async-storage/async-storage`
-- [ ] T003 Install expo-notifications: `expo-notifications`
-- [ ] T004 [P] Create global TypeScript types file in types/index.ts
-- [ ] T005 [P] Update tailwind.config.js with dark red primary color theme (crimson #DC143C)
-- [ ] T006 [P] Create QueryClient configuration with AsyncStorage persistence in lib/queryClient.ts
-- [ ] T007 Update app/\_layout.tsx to wrap app with QueryClientProvider and theme provider
+- [X] T001 Install TanStack Query packages: `@tanstack/react-query` and `@tanstack/react-query-persist-client`
+- [X] T002 Install AsyncStorage: `@react-native-async-storage/async-storage`
+- [X] T003 Install expo-notifications: `expo-notifications`
+- [X] T004 [P] Create global TypeScript types file in types/index.ts
+- [X] T005 [P] Update tailwind.config.js with dark red primary color theme (crimson #DC143C)
+- [X] T006 [P] Create QueryClient configuration with AsyncStorage persistence in lib/queryClient.ts
+- [X] T007 Update app/\_layout.tsx to wrap app with QueryClientProvider and theme provider
 
 ---
 
@@ -46,17 +46,17 @@ Mobile single-project structure:
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T008 [P] Create muscle groups constants in consts/muscles.ts with MUSCLE_GROUPS array
-- [ ] T009 [P] Create gym machines constants in consts/machines.ts with GYM_MACHINES array
-- [ ] T010 [P] Create theme constants in consts/theme.ts for dark red color palette
-- [ ] T011 Create TypeScript interfaces for all entities in lib/storage/types.ts (Workout, Exercise, SetEntry, WorkoutPlan, PlannedExercise, UserSettings)
-- [ ] T012 Implement AsyncStorage operations in lib/storage/workoutStorage.ts (getActiveWorkout, saveActiveWorkout, completeWorkout, deleteActiveWorkout, getWorkoutById, updateWorkout, getWorkoutIds, getWorkoutCount)
-- [ ] T013 [P] Implement AsyncStorage operations in lib/storage/settingsStorage.ts (getSettings, saveSettings)
-- [ ] T014 [P] Implement workout plan storage operations in lib/storage/workoutStorage.ts (saveWorkoutPlan, getPlansByDay, getWorkoutPlanById, deleteWorkoutPlan)
-- [ ] T015 Create timer utility functions in lib/utils/timerUtils.ts (calculateDuration, formatTimer)
-- [ ] T016 [P] Create date utility functions in lib/utils/dateUtils.ts (formatDate, formatDuration)
-- [ ] T017 Create useTheme hook with context in lib/hooks/useTheme.ts for theme switching
-- [ ] T018 Implement theme provider component and integrate with app/\_layout.tsx
+- [X] T008 [P] Create muscle groups constants in consts/muscles.ts with MUSCLE_GROUPS array
+- [X] T009 [P] Create gym machines constants in consts/machines.ts with GYM_MACHINES array
+- [X] T010 [P] Create theme constants in consts/theme.ts for dark red color palette
+- [X] T011 Create TypeScript interfaces for all entities in lib/storage/types.ts (Workout, Exercise, SetEntry, WorkoutPlan, PlannedExercise, UserSettings)
+- [X] T012 Implement AsyncStorage operations in lib/storage/workoutStorage.ts (getActiveWorkout, saveActiveWorkout, completeWorkout, deleteActiveWorkout, getWorkoutById, updateWorkout, getWorkoutIds, getWorkoutCount)
+- [X] T013 [P] Implement AsyncStorage operations in lib/storage/settingsStorage.ts (getSettings, saveSettings)
+- [X] T014 [P] Implement workout plan storage operations in lib/storage/workoutStorage.ts (saveWorkoutPlan, getPlansByDay, getWorkoutPlanById, deleteWorkoutPlan)
+- [X] T015 Create timer utility functions in lib/utils/timerUtils.ts (calculateDuration, formatTimer)
+- [X] T016 [P] Create date utility functions in lib/utils/dateUtils.ts (formatDate, formatDuration)
+- [X] T017 Create useTheme hook with context in lib/hooks/useTheme.ts for theme switching
+- [X] T018 Implement theme provider component and integrate with app/\_layout.tsx
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -70,16 +70,16 @@ Mobile single-project structure:
 
 ### Implementation for User Story 1
 
-- [ ] T019 [P] [US1] Create useActiveWorkout hook in lib/hooks/useActiveWorkout.ts with TanStack Query mutations for start/pause/resume/stop
-- [ ] T020 [P] [US1] Create WorkoutTimer component in components/WorkoutTimer.tsx with start/pause/resume/stop controls
-- [ ] T021 [US1] Create home screen in app/index.tsx with prominent "Start Workout" button (tap 1)
-- [ ] T022 [US1] Create active workout screen in app/start-workout.tsx with timer display (auto-navigates after tap 1)
-- [ ] T023 [US1] Implement workout start logic: create Workout with status='in-progress', save to workout:active
-- [ ] T024 [US1] Implement pause functionality: update pausedAt timestamp, preserve accumulatedTime
-- [ ] T025 [US1] Implement resume functionality: clear pausedAt, recalculate from timestamps
-- [ ] T026 [US1] Implement stop functionality: set status='completed', endTime, move to permanent storage
-- [ ] T027 [US1] Add navigation logic from home to start-workout screen on workout start
-- [ ] T028 [US1] Add navigation logic back to home screen when workout stops
+- [X] T019 [P] [US1] Create useActiveWorkout hook in lib/hooks/useActiveWorkout.ts with TanStack Query mutations for start/pause/resume/stop
+- [X] T020 [P] [US1] Create WorkoutTimer component in components/WorkoutTimer.tsx with start/pause/resume/stop controls
+- [X] T021 [US1] Create home screen in app/index.tsx with prominent "Start Workout" button (tap 1)
+- [X] T022 [US1] Create active workout screen in app/start-workout.tsx with timer display (auto-navigates after tap 1)
+- [X] T023 [US1] Implement workout start logic: create Workout with status='in-progress', save to workout:active
+- [X] T024 [US1] Implement pause functionality: update pausedAt timestamp, preserve accumulatedTime
+- [X] T025 [US1] Implement resume functionality: clear pausedAt, recalculate from timestamps
+- [X] T026 [US1] Implement stop functionality: set status='completed', endTime, move to permanent storage
+- [X] T027 [US1] Add navigation logic from home to start-workout screen on workout start
+- [X] T028 [US1] Add navigation logic back to home screen when workout stops
 
 **Checkpoint**: User Story 1 complete - Users can start, pause, resume, stop workouts with 2-tap requirement met
 
