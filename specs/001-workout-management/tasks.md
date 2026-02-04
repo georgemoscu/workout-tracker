@@ -30,13 +30,13 @@ Mobile single-project structure:
 
 **Purpose**: Project initialization and dependencies installation
 
-- [X] T001 Install TanStack Query packages: `@tanstack/react-query` and `@tanstack/react-query-persist-client`
-- [X] T002 Install AsyncStorage: `@react-native-async-storage/async-storage`
-- [X] T003 Install expo-notifications: `expo-notifications`
-- [X] T004 [P] Create global TypeScript types file in types/index.ts
-- [X] T005 [P] Update tailwind.config.js with dark red primary color theme (crimson #DC143C)
-- [X] T006 [P] Create QueryClient configuration with AsyncStorage persistence in lib/queryClient.ts
-- [X] T007 Update app/\_layout.tsx to wrap app with QueryClientProvider and theme provider
+- [x] T001 Install TanStack Query packages: `@tanstack/react-query` and `@tanstack/react-query-persist-client`
+- [x] T002 Install AsyncStorage: `@react-native-async-storage/async-storage`
+- [x] T003 Install expo-notifications: `expo-notifications`
+- [x] T004 [P] Create global TypeScript types file in types/index.ts
+- [x] T005 [P] Update tailwind.config.js with dark red primary color theme (crimson #DC143C)
+- [x] T006 [P] Create QueryClient configuration with AsyncStorage persistence in lib/queryClient.ts
+- [x] T007 Update app/\_layout.tsx to wrap app with QueryClientProvider and theme provider
 
 ---
 
@@ -46,17 +46,17 @@ Mobile single-project structure:
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [X] T008 [P] Create muscle groups constants in consts/muscles.ts with MUSCLE_GROUPS array
-- [X] T009 [P] Create gym machines constants in consts/machines.ts with GYM_MACHINES array
-- [X] T010 [P] Create theme constants in consts/theme.ts for dark red color palette
-- [X] T011 Create TypeScript interfaces for all entities in lib/storage/types.ts (Workout, Exercise, SetEntry, WorkoutPlan, PlannedExercise, UserSettings)
-- [X] T012 Implement AsyncStorage operations in lib/storage/workoutStorage.ts (getActiveWorkout, saveActiveWorkout, completeWorkout, deleteActiveWorkout, getWorkoutById, updateWorkout, getWorkoutIds, getWorkoutCount)
-- [X] T013 [P] Implement AsyncStorage operations in lib/storage/settingsStorage.ts (getSettings, saveSettings)
-- [X] T014 [P] Implement workout plan storage operations in lib/storage/workoutStorage.ts (saveWorkoutPlan, getPlansByDay, getWorkoutPlanById, deleteWorkoutPlan)
-- [X] T015 Create timer utility functions in lib/utils/timerUtils.ts (calculateDuration, formatTimer)
-- [X] T016 [P] Create date utility functions in lib/utils/dateUtils.ts (formatDate, formatDuration)
-- [X] T017 Create useTheme hook with context in lib/hooks/useTheme.ts for theme switching
-- [X] T018 Implement theme provider component and integrate with app/\_layout.tsx
+- [x] T008 [P] Create muscle groups constants in consts/muscles.ts with MUSCLE_GROUPS array
+- [x] T009 [P] Create gym machines constants in consts/machines.ts with GYM_MACHINES array
+- [x] T010 [P] Create theme constants in consts/theme.ts for dark red color palette
+- [x] T011 Create TypeScript interfaces for all entities in lib/storage/types.ts (Workout, Exercise, SetEntry, WorkoutPlan, PlannedExercise, UserSettings)
+- [x] T012 Implement AsyncStorage operations in lib/storage/workoutStorage.ts (getActiveWorkout, saveActiveWorkout, completeWorkout, deleteActiveWorkout, getWorkoutById, updateWorkout, getWorkoutIds, getWorkoutCount)
+- [x] T013 [P] Implement AsyncStorage operations in lib/storage/settingsStorage.ts (getSettings, saveSettings)
+- [x] T014 [P] Implement workout plan storage operations in lib/storage/workoutStorage.ts (saveWorkoutPlan, getPlansByDay, getWorkoutPlanById, deleteWorkoutPlan)
+- [x] T015 Create timer utility functions in lib/utils/timerUtils.ts (calculateDuration, formatTimer)
+- [x] T016 [P] Create date utility functions in lib/utils/dateUtils.ts (formatDate, formatDuration)
+- [x] T017 Create useTheme hook with context in lib/hooks/useTheme.ts for theme switching
+- [x] T018 Implement theme provider component and integrate with app/\_layout.tsx
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -70,16 +70,16 @@ Mobile single-project structure:
 
 ### Implementation for User Story 1
 
-- [X] T019 [P] [US1] Create useActiveWorkout hook in lib/hooks/useActiveWorkout.ts with TanStack Query mutations for start/pause/resume/stop
-- [X] T020 [P] [US1] Create WorkoutTimer component in components/WorkoutTimer.tsx with start/pause/resume/stop controls
-- [X] T021 [US1] Create home screen in app/index.tsx with prominent "Start Workout" button (tap 1)
-- [X] T022 [US1] Create active workout screen in app/start-workout.tsx with timer display (auto-navigates after tap 1)
-- [X] T023 [US1] Implement workout start logic: create Workout with status='in-progress', save to workout:active
-- [X] T024 [US1] Implement pause functionality: update pausedAt timestamp, preserve accumulatedTime
-- [X] T025 [US1] Implement resume functionality: clear pausedAt, recalculate from timestamps
-- [X] T026 [US1] Implement stop functionality: set status='completed', endTime, move to permanent storage
-- [X] T027 [US1] Add navigation logic from home to start-workout screen on workout start
-- [X] T028 [US1] Add navigation logic back to home screen when workout stops
+- [x] T019 [P] [US1] Create useActiveWorkout hook in lib/hooks/useActiveWorkout.ts with TanStack Query mutations for start/pause/resume/stop
+- [x] T020 [P] [US1] Create WorkoutTimer component in components/WorkoutTimer.tsx with start/pause/resume/stop controls
+- [x] T021 [US1] Create home screen in app/index.tsx with prominent "Start Workout" button (tap 1)
+- [x] T022 [US1] Create active workout screen in app/start-workout.tsx with timer display (auto-navigates after tap 1)
+- [x] T023 [US1] Implement workout start logic: create Workout with status='in-progress', save to workout:active
+- [x] T024 [US1] Implement pause functionality: update pausedAt timestamp, preserve accumulatedTime
+- [x] T025 [US1] Implement resume functionality: clear pausedAt, recalculate from timestamps
+- [x] T026 [US1] Implement stop functionality: set status='completed', endTime, move to permanent storage
+- [x] T027 [US1] Add navigation logic from home to start-workout screen on workout start
+- [x] T028 [US1] Add navigation logic back to home screen when workout stops
 
 **Checkpoint**: User Story 1 complete - Users can start, pause, resume, stop workouts with 2-tap requirement met
 
@@ -93,18 +93,18 @@ Mobile single-project structure:
 
 ### Implementation for User Story 2
 
-- [ ] T029 [P] [US2] Create MuscleGroupPicker component in components/MuscleGroupPicker.tsx with multi-select chip UI
-- [ ] T030 [P] [US2] Create MachinePicker component in components/MachinePicker.tsx with scrollable list
-- [ ] T031 [P] [US2] Create SetInput component in components/SetInput.tsx for individual set rep entry with add/remove buttons
-- [ ] T032 [US2] Create ExerciseForm component in components/ExerciseForm.tsx combining pickers and set inputs
-- [ ] T033 [US2] Create ExerciseListItem component in components/ExerciseListItem.tsx to display exercise with all sets
-- [ ] T034 [US2] Add "Add Exercise" button to app/start-workout.tsx screen
-- [ ] T035 [US2] Implement exercise creation logic: generate Exercise with muscleGroups[], machine, sets[]
-- [ ] T036 [US2] Implement dynamic set entry: add/remove SetEntry with reps and order
-- [ ] T037 [US2] Implement exercise save: push Exercise to workout.exercises array, update workout:active
-- [ ] T038 [US2] Display exercises list in active workout screen with ExerciseListItem components
-- [ ] T039A [US2] Implement remove exercise from active workout: add delete button to ExerciseListItem, remove from exercises array, update workout:active
-- [ ] T039 [US2] Add validation: minimum 1 muscle group, minimum 1 set, maximum 20 sets, reps > 0
+- [x] T029 [P] [US2] Create MuscleGroupPicker component in components/MuscleGroupPicker.tsx with multi-select chip UI
+- [x] T030 [P] [US2] Create MachinePicker component in components/MachinePicker.tsx with scrollable list
+- [x] T031 [P] [US2] Create SetInput component in components/SetInput.tsx for individual set rep entry with add/remove buttons
+- [x] T032 [US2] Create ExerciseForm component in components/ExerciseForm.tsx combining pickers and set inputs
+- [x] T033 [US2] Create ExerciseListItem component in components/ExerciseListItem.tsx to display exercise with all sets
+- [x] T034 [US2] Add "Add Exercise" button to app/start-workout.tsx screen
+- [x] T035 [US2] Implement exercise creation logic: generate Exercise with muscleGroups[], machine, sets[]
+- [x] T036 [US2] Implement dynamic set entry: add/remove SetEntry with reps and order
+- [x] T037 [US2] Implement exercise save: push Exercise to workout.exercises array, update workout:active
+- [x] T038 [US2] Display exercises list in active workout screen with ExerciseListItem components
+- [x] T039A [US2] Implement remove exercise from active workout: add delete button to ExerciseListItem, remove from exercises array, update workout:active
+- [x] T039 [US2] Add validation: minimum 1 muscle group, minimum 1 set, maximum 20 sets, reps > 0
 
 **Checkpoint**: User Story 2 complete - Users can log exercises with full details during workouts
 
@@ -333,17 +333,17 @@ After each user story phase, perform manual testing per quickstart.md checklist:
 
 ## Task Summary
 
-| Phase                  | Task Range | Count        | Parallelizable   |
-| ---------------------- | ---------- | ------------ | ---------------- |
-| Setup                  | T001-T007  | 7            | 4 tasks          |
-| Foundation             | T008-T018  | 11           | 5 tasks          |
-| US1 (Quick Start)      | T019-T028  | 10           | 2 tasks          |
-| US2 (Exercise Logging) | T029-T039  | 11           | 3 tasks          |
-| US3 (History & Edit)   | T040-T051  | 12           | 2 tasks          |
-| US4 (Planning)         | T052-T062  | 11           | 2 tasks          |
-| US5 (Theme)            | T063-T071  | 9            | 3 tasks          |
-| Polish                 | T072-T090  | 19           | Some tasks       |
-| **TOTAL**              | T001-T090, T039A  | **91 tasks** | **21+ parallel** |
+| Phase                  | Task Range       | Count        | Parallelizable   |
+| ---------------------- | ---------------- | ------------ | ---------------- |
+| Setup                  | T001-T007        | 7            | 4 tasks          |
+| Foundation             | T008-T018        | 11           | 5 tasks          |
+| US1 (Quick Start)      | T019-T028        | 10           | 2 tasks          |
+| US2 (Exercise Logging) | T029-T039        | 11           | 3 tasks          |
+| US3 (History & Edit)   | T040-T051        | 12           | 2 tasks          |
+| US4 (Planning)         | T052-T062        | 11           | 2 tasks          |
+| US5 (Theme)            | T063-T071        | 9            | 3 tasks          |
+| Polish                 | T072-T090        | 19           | Some tasks       |
+| **TOTAL**              | T001-T090, T039A | **91 tasks** | **21+ parallel** |
 
 ---
 
