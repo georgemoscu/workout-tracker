@@ -3,16 +3,18 @@ import { RecoveryModal } from "@/components/RecoveryModal";
 import { WorkoutCard } from "@/components/WorkoutCard";
 import { useActiveWorkout } from "@/lib/hooks/useActiveWorkout";
 import { requestNotificationPermissions } from "@/lib/hooks/useNotification";
+import { fetchWorkoutBatch } from "@/lib/hooks/useWorkouts";
 import { WorkoutPlan } from "@/lib/storage/types";
 import { getPlansByDay } from "@/lib/storage/workoutStorage";
 import { Lucide } from "@react-native-vector-icons/lucide";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { Link, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {
+  ActivityIndicator,
   Alert,
+  FlatList,
   Pressable,
-  ScrollView,
   StatusBar,
   Text,
   TouchableOpacity,
@@ -21,7 +23,25 @@ import {
 import DatePicker, { SingleOutput } from "react-native-neat-date-picker";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const workouts = Array.from({ length: 30 }).map((_, i) => `Workout ${i + 1}`);
+// T006: Empty state component for when no workouts exist
+function EmptyWorkoutState() {
+  return (
+    <View className="flex-1 justify-center items-center py-16 px-6">
+      <Lucide
+        name="dumbbell"
+        size={64}
+        color="rgb(156, 163, 175)" // gray-400
+        className="mb-6"
+      />
+      <Text className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+        No workouts yet
+      </Text>
+      <Text className="text-gray-600 dark:text-gray-400 text-center">
+        Start your first workout!
+      </Text>
+    </View>
+  );
+}
 
 export default function Index() {
   const [showDatePickerRange, setShowDatePickerRange] = useState(false);
@@ -44,6 +64,28 @@ export default function Index() {
     queryFn: () => getPlansByDay(today),
     staleTime: 1000 * 60 * 5, // 5 minutes
   });
+
+  // T003: Fetch completed workouts with infinite scroll
+  const {
+    data: workoutsData,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    error,
+    refetch,
+  } = useInfiniteQuery({
+    queryKey: ["workouts", "completed"],
+    queryFn: ({ pageParam = 0 }) => fetchWorkoutBatch(pageParam, 20),
+    getNextPageParam: (lastPage) =>
+      lastPage.hasMore ? lastPage.nextOffset : undefined,
+    initialPageParam: 0,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    refetchOnMount: true,
+  });
+
+  // Flatten pages into single array
+  const workouts = workoutsData?.pages.flatMap((page) => page.workouts) ?? [];
 
   function onCancelDatePicker() {
     setShowDatePickerRange(false);
@@ -184,13 +226,60 @@ export default function Index() {
           </View>
         )}
 
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View className="mb-32">
-            {workouts.map((workout) => (
-              <WorkoutCard key={workout} workout={workout} />
-            ))}
+        {/* T009: Error recovery banner */}
+        {error && (
+          <View className="bg-red-100 dark:bg-red-900/30 p-4 rounded-lg mb-4">
+            <Text className="text-red-700 dark:text-red-300 font-semibold mb-2">
+              Failed to load workouts
+            </Text>
+            <TouchableOpacity
+              onPress={() => refetch()}
+              className="bg-red-600 px-4 py-2 rounded-lg"
+            >
+              <Text className="text-white font-semibold text-center">
+                Retry
+              </Text>
+            </TouchableOpacity>
           </View>
-        </ScrollView>
+        )}
+
+        {/* T004-T008: Replace ScrollView with FlatList for infinite scroll */}
+        <FlatList
+          data={workouts}
+          keyExtractor={(workout) => workout.id}
+          renderItem={({ item: workout }) => (
+            <WorkoutCard key={workout.id} workout={workout} />
+          )}
+          onEndReached={() => {
+            if (hasNextPage && !isFetchingNextPage) {
+              fetchNextPage();
+            }
+          }}
+          onEndReachedThreshold={0.5}
+          ListEmptyComponent={
+            isLoading ? (
+              <View className="flex-1 justify-center items-center py-12">
+                <ActivityIndicator size="large" />
+              </View>
+            ) : (
+              <EmptyWorkoutState />
+            )
+          }
+          ListFooterComponent={
+            isFetchingNextPage ? (
+              <View className="py-4">
+                <ActivityIndicator />
+              </View>
+            ) : null
+          }
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 128 }}
+          // T012: Performance optimizations for large datasets
+          removeClippedSubviews={true}
+          maxToRenderPerBatch={10}
+          windowSize={21}
+          initialNumToRender={20}
+        />
 
         <Link href={{ pathname: "/start-workout" }} asChild>
           <TouchableOpacity

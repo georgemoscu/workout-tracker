@@ -35,10 +35,6 @@ export default function RootLayout() {
             options={{
               title: "Start Workout",
               headerShown: false,
-              presentation: "formSheet",
-              sheetAllowedDetents: "fitToContents",
-              sheetGrabberVisible: true,
-              sheetCornerRadius: 16,
             }}
           />
           <Stack.Screen
