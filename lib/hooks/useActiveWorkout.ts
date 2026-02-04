@@ -1,6 +1,6 @@
 // Active workout hook with TanStack Query mutations
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import type { Workout } from "../storage/types";
+import type { Exercise, PlannedExercise, Workout } from "../storage/types";
 import {
   completeWorkout,
   deleteActiveWorkout,
@@ -119,6 +119,40 @@ export function useActiveWorkout() {
     },
   });
 
+  // T059: Mutation to start workout from plan
+  const startFromPlan = useMutation({
+    mutationFn: async (plannedExercises: PlannedExercise[]) => {
+      // Convert PlannedExercise to Exercise with empty sets array
+      const exercises: Exercise[] = plannedExercises.map((planned, index) => ({
+        id: `exercise-${Date.now()}-${index}`,
+        muscleGroups: planned.muscleGroups,
+        machine: planned.machine,
+        sets: [], // User will fill in sets during workout
+        order: planned.order,
+        createdAt: Date.now(),
+        notes: planned.notes,
+      }));
+
+      const newWorkout: Workout = {
+        id: `temp-${Date.now()}`,
+        startTime: Date.now(),
+        endTime: null,
+        pausedAt: null,
+        accumulatedTime: 0,
+        status: "in-progress",
+        exercises,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+      };
+
+      await saveActiveWorkout(newWorkout);
+      return newWorkout;
+    },
+    onSuccess: (workout) => {
+      queryClient.setQueryData(ACTIVE_WORKOUT_KEY, workout);
+    },
+  });
+
   return {
     activeWorkout,
     isLoading,
@@ -128,5 +162,6 @@ export function useActiveWorkout() {
     stopWorkout,
     updateActive,
     discardWorkout,
+    startFromPlan,
   };
 }

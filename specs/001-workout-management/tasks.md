@@ -143,17 +143,17 @@ Mobile single-project structure:
 
 ### Implementation for User Story 4
 
-- [ ] T052 [P] [US4] Create PlannedExerciseForm component in components/PlannedExerciseForm.tsx with targetSets and targetReps fields
-- [ ] T053 [P] [US4] Create WeekCalendar component in components/WeekCalendar.tsx to display days with plan indicators
-- [ ] T054 [US4] Create workout planning screen in app/plan-workout.tsx with weekly calendar view
-- [ ] T055 [US4] Implement day selection in calendar: highlight selected day, show plans for that day
-- [ ] T056 [US4] Create workout plan form: name input, day selection, planned exercises list
-- [ ] T057 [US4] Implement plan save logic: call saveWorkoutPlan, persist to plan:{id}, update plans:byDay:{day} index
-- [ ] T058 [US4] Display existing plans for selected day in list format
-- [ ] T059 [US4] Implement "Start from Plan" functionality: copy PlannedExercise to Exercise (clear sets array)
-- [ ] T060 [US4] Add plan cards to home screen (app/index.tsx) showing today's plans with quick-start button
-- [ ] T061 [US4] Implement plan deletion: remove from storage, update index
-- [ ] T062 [US4] Allow editing existing workout plans
+- [X] T052 [P] [US4] Create PlannedExerciseForm component in components/PlannedExerciseForm.tsx with targetSets and targetReps fields
+- [X] T053 [P] [US4] Create WeekCalendar component in components/WeekCalendar.tsx to display days with plan indicators
+- [X] T054 [US4] Create workout planning screen in app/plan-workout.tsx with weekly calendar view
+- [X] T055 [US4] Implement day selection in calendar: highlight selected day, show plans for that day
+- [X] T056 [US4] Create workout plan form: name input, day selection, planned exercises list
+- [X] T057 [US4] Implement plan save logic: call saveWorkoutPlan, persist to plan:{id}, update plans:byDay:{day} index
+- [X] T058 [US4] Display existing plans for selected day in list format
+- [X] T059 [US4] Implement "Start from Plan" functionality: copy PlannedExercise to Exercise (clear sets array)
+- [X] T060 [US4] Add plan cards to home screen (app/index.tsx) showing today's plans with quick-start button
+- [X] T061 [US4] Implement plan deletion: remove from storage, update index
+- [X] T062 [US4] Allow editing existing workout plans
 
 **Checkpoint**: User Story 4 complete - Users can plan workouts and start from templates
 
