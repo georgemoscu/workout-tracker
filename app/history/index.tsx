@@ -47,6 +47,11 @@ export default function History() {
             data={workouts}
             renderItem={({ item }) => <WorkoutCard workout={item} />}
             keyExtractor={(item) => item.id}
+            getItemLayout={(data, index) => ({
+              length: 140, // Approximate height of WorkoutCard
+              offset: 140 * index,
+              index,
+            })}
             refreshControl={
               <RefreshControl
                 refreshing={isLoading}

@@ -1,12 +1,14 @@
 import { PlanCard } from "@/components/PlanCard";
+import { RecoveryModal } from "@/components/RecoveryModal";
 import { WorkoutCard } from "@/components/WorkoutCard";
 import { useActiveWorkout } from "@/lib/hooks/useActiveWorkout";
+import { requestNotificationPermissions } from "@/lib/hooks/useNotification";
 import { WorkoutPlan } from "@/lib/storage/types";
 import { getPlansByDay } from "@/lib/storage/workoutStorage";
 import { Lucide } from "@react-native-vector-icons/lucide";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useRouter } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Alert,
   Pressable,
@@ -23,8 +25,17 @@ const workouts = Array.from({ length: 30 }).map((_, i) => `Workout ${i + 1}`);
 
 export default function Index() {
   const [showDatePickerRange, setShowDatePickerRange] = useState(false);
+  const [showRecoveryModal, setShowRecoveryModal] = useState(false);
   const router = useRouter();
-  const { activeWorkout, startWorkout, startFromPlan } = useActiveWorkout();
+  const { activeWorkout, startWorkout, startFromPlan, discardWorkout } =
+    useActiveWorkout();
+
+  // T072: Check for active workout on mount (force-close recovery)
+  useEffect(() => {
+    if (activeWorkout && activeWorkout.status === "in-progress") {
+      setShowRecoveryModal(true);
+    }
+  }, [activeWorkout]);
 
   // T060: Fetch today's plans
   const today = new Date().getDay();
@@ -43,13 +54,9 @@ export default function Index() {
     setShowDatePickerRange(false);
   }
 
-  const handleStartWorkout = async () => {
-    await startWorkout.mutateAsync();
-    router.push("/start-workout");
-  };
-
   // T060: Handle start workout from plan
-  const handleStartFromPlan = async (plan: WorkoutPlan) => {
+  const handleStartWorkout = async () => {
+    // T079: Workout blocking - prevent starting if one is in progress
     if (activeWorkout) {
       Alert.alert(
         "Active Workout",
@@ -58,12 +65,54 @@ export default function Index() {
       return;
     }
 
+    // T075: Request notification permissions on first workout start
+    await requestNotificationPermissions();
+
+    await startWorkout.mutateAsync();
+    router.push("/start-workout");
+  };
+
+  // T060: Handle start workout from plan
+  const handleStartFromPlan = async (plan: WorkoutPlan) => {
+    // T079: Workout blocking
+    if (activeWorkout) {
+      Alert.alert(
+        "Active Workout",
+        "You already have an active workout. Please complete or stop it before starting a new one.",
+      );
+      return;
+    }
+
+    // T075: Request notification permissions on first workout start
+    await requestNotificationPermissions();
+
     try {
       await startFromPlan.mutateAsync(plan.plannedExercises);
       router.push("/start-workout");
     } catch (error) {
       Alert.alert("Error", "Failed to start workout from plan.");
       console.error("Failed to start from plan:", error);
+    }
+  };
+
+  // T073: Recovery resume - navigate to active workout
+  const handleRecoveryResume = () => {
+    setShowRecoveryModal(false);
+    router.push("/start-workout");
+  };
+
+  // T074: Recovery discard - delete active workout
+  const handleRecoveryDiscard = async () => {
+    try {
+      await discardWorkout.mutateAsync();
+      setShowRecoveryModal(false);
+      Alert.alert(
+        "Workout Discarded",
+        "Your incomplete workout has been removed.",
+      );
+    } catch (error) {
+      console.error("Failed to discard workout:", error);
+      Alert.alert("Error", "Failed to discard workout. Please try again.");
     }
   };
 
@@ -78,7 +127,7 @@ export default function Index() {
 
           <View className="flex-row gap-2">
             <TouchableOpacity
-              onPress={() => router.push("/settings/index")}
+              onPress={() => router.push("/settings" as any)}
               className="p-2 border border-gray-300 dark:border-gray-700 rounded-lg"
             >
               <Lucide name="settings" size={24} color="currentColor" />
@@ -159,6 +208,16 @@ export default function Index() {
         onCancel={onCancelDatePicker}
         onConfirm={onConfirmDatePicker}
       />
+
+      {/* T072-T074: Force-close recovery modal */}
+      {activeWorkout && (
+        <RecoveryModal
+          visible={showRecoveryModal}
+          workout={activeWorkout}
+          onResume={handleRecoveryResume}
+          onDiscard={handleRecoveryDiscard}
+        />
+      )}
     </>
   );
 }

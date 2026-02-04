@@ -185,24 +185,24 @@ Mobile single-project structure:
 
 **Purpose**: Force-close recovery, notifications, error handling, performance optimizations
 
-- [ ] T072 Implement force-close recovery modal: check workout:active on app launch, show Resume/Discard options
-- [ ] T073 Implement recovery resume: load incomplete workout into active session, restore timer state
-- [ ] T074 Implement recovery discard: call deleteActiveWorkout, clear workout:active
-- [ ] T075 Implement 3-hour notification using useNotification hook in lib/hooks/useNotification.ts (request expo-notifications permissions on first workout start or in settings screen)
-- [ ] T076 Register background task with expo-background-fetch to check workout duration
-- [ ] T077 Trigger local notification at 3-hour mark using expo-notifications
-- [ ] T078 Add error handling to all AsyncStorage operations with console.error logging
-- [ ] T079 Implement workout blocking: prevent starting new workout when one is in progress, show alert
-- [ ] T080 Add loading states to all async operations (workout save, history load, plan load)
-- [ ] T081 Optimize FlatList in history screen with getItemLayout for fixed-height items
+- [x] T072 Implement force-close recovery modal: check workout:active on app launch, show Resume/Discard options
+- [x] T073 Implement recovery resume: load incomplete workout into active session, restore timer state
+- [x] T074 Implement recovery discard: call deleteActiveWorkout, clear workout:active
+- [x] T075 Implement 3-hour notification using useNotification hook in lib/hooks/useNotification.ts (request expo-notifications permissions on first workout start or in settings screen)
+- [x] T076 Register background task with expo-background-fetch to check workout duration
+- [x] T077 Trigger local notification at 3-hour mark using expo-notifications
+- [x] T078 Add error handling to all AsyncStorage operations with console.error logging
+- [x] T079 Implement workout blocking: prevent starting new workout when one is in progress, show alert
+- [x] T080 Add loading states to all async operations (workout save, history load, plan load)
+- [x] T081 Optimize FlatList in history screen with getItemLayout for fixed-height items
 - [ ] T082 Implement throttled auto-save for active workout (every 5 seconds instead of every change)
-- [ ] T083 Add empty states for history screen (no workouts yet), plan screen (no plans yet)
-- [ ] T084 Add confirmation dialogs for destructive actions (delete plan, discard workout)
+- [x] T083 Add empty states for history screen (no workouts yet), plan screen (no plans yet)
+- [x] T084 Add confirmation dialogs for destructive actions (delete plan, discard workout)
 - [ ] T085 Polish UI with consistent spacing, typography, and dark red accent usage
 - [ ] T086 Add haptic feedback for button presses using expo-haptics
-- [ ] T087 Ensure all text inputs have proper keyboard types (numeric for reps, default for notes)
-- [ ] T088 Add workout summary on stop: show total duration, exercises completed, total sets
-- [ ] T089 Implement pull-to-refresh on history screen to reload workouts
+- [x] T087 Ensure all text inputs have proper keyboard types (numeric for reps, default for notes)
+- [x] T088 Add workout summary on stop: show total duration, exercises completed, total sets
+- [x] T089 Implement pull-to-refresh on history screen to reload workouts
 - [ ] T090 Add workout count badge to history tab icon
 
 **Checkpoint**: All polish tasks complete - App is production-ready

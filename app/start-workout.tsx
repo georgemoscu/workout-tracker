@@ -4,6 +4,7 @@ import { WorkoutTimer } from "@/components/WorkoutTimer";
 import { GymMachine } from "@/consts/machines";
 import { MuscleGroup } from "@/consts/muscles";
 import { useActiveWorkout } from "@/lib/hooks/useActiveWorkout";
+import { useNotification } from "@/lib/hooks/useNotification";
 import { Exercise, SetEntry, Workout } from "@/lib/storage/types";
 import { useRouter } from "expo-router";
 import { useState } from "react";
@@ -15,6 +16,9 @@ export default function StartWorkout() {
   const { activeWorkout, pauseWorkout, resumeWorkout, stopWorkout } =
     useActiveWorkout();
   const [showExerciseForm, setShowExerciseForm] = useState(false);
+
+  // T075-T077: Use notification hook for 3-hour workout alert
+  useNotification(activeWorkout);
 
   const handlePause = async () => {
     if (!activeWorkout) return;
@@ -29,20 +33,35 @@ export default function StartWorkout() {
   const handleStop = async () => {
     if (!activeWorkout) return;
 
-    Alert.alert("Stop Workout", "Are you sure you want to stop this workout?", [
-      {
-        text: "Cancel",
-        style: "cancel",
-      },
-      {
-        text: "Stop",
-        style: "destructive",
-        onPress: async () => {
-          await stopWorkout.mutateAsync(activeWorkout);
-          router.back();
+    // T088: Calculate workout summary
+    const totalSets = activeWorkout.exercises.reduce(
+      (sum, ex) => sum + ex.sets.length,
+      0,
+    );
+    const totalReps = activeWorkout.exercises.reduce(
+      (sum, ex) => sum + ex.sets.reduce((s, set) => s + set.reps, 0),
+      0,
+    );
+    const duration = Math.floor(activeWorkout.accumulatedTime / 60); // minutes
+
+    Alert.alert(
+      "Stop Workout",
+      `Are you sure you want to stop this workout?\n\nDuration: ${duration} minutes\nExercises: ${activeWorkout.exercises.length}\nTotal Sets: ${totalSets}\nTotal Reps: ${totalReps}`,
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
         },
-      },
-    ]);
+        {
+          text: "Stop",
+          style: "destructive",
+          onPress: async () => {
+            await stopWorkout.mutateAsync(activeWorkout);
+            router.back();
+          },
+        },
+      ],
+    );
   };
 
   // T035: Exercise creation logic
