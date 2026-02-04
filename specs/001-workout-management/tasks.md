@@ -143,17 +143,17 @@ Mobile single-project structure:
 
 ### Implementation for User Story 4
 
-- [X] T052 [P] [US4] Create PlannedExerciseForm component in components/PlannedExerciseForm.tsx with targetSets and targetReps fields
-- [X] T053 [P] [US4] Create WeekCalendar component in components/WeekCalendar.tsx to display days with plan indicators
-- [X] T054 [US4] Create workout planning screen in app/plan-workout.tsx with weekly calendar view
-- [X] T055 [US4] Implement day selection in calendar: highlight selected day, show plans for that day
-- [X] T056 [US4] Create workout plan form: name input, day selection, planned exercises list
-- [X] T057 [US4] Implement plan save logic: call saveWorkoutPlan, persist to plan:{id}, update plans:byDay:{day} index
-- [X] T058 [US4] Display existing plans for selected day in list format
-- [X] T059 [US4] Implement "Start from Plan" functionality: copy PlannedExercise to Exercise (clear sets array)
-- [X] T060 [US4] Add plan cards to home screen (app/index.tsx) showing today's plans with quick-start button
-- [X] T061 [US4] Implement plan deletion: remove from storage, update index
-- [X] T062 [US4] Allow editing existing workout plans
+- [x] T052 [P] [US4] Create PlannedExerciseForm component in components/PlannedExerciseForm.tsx with targetSets and targetReps fields
+- [x] T053 [P] [US4] Create WeekCalendar component in components/WeekCalendar.tsx to display days with plan indicators
+- [x] T054 [US4] Create workout planning screen in app/plan-workout.tsx with weekly calendar view
+- [x] T055 [US4] Implement day selection in calendar: highlight selected day, show plans for that day
+- [x] T056 [US4] Create workout plan form: name input, day selection, planned exercises list
+- [x] T057 [US4] Implement plan save logic: call saveWorkoutPlan, persist to plan:{id}, update plans:byDay:{day} index
+- [x] T058 [US4] Display existing plans for selected day in list format
+- [x] T059 [US4] Implement "Start from Plan" functionality: copy PlannedExercise to Exercise (clear sets array)
+- [x] T060 [US4] Add plan cards to home screen (app/index.tsx) showing today's plans with quick-start button
+- [x] T061 [US4] Implement plan deletion: remove from storage, update index
+- [x] T062 [US4] Allow editing existing workout plans
 
 **Checkpoint**: User Story 4 complete - Users can plan workouts and start from templates
 
@@ -167,15 +167,15 @@ Mobile single-project structure:
 
 ### Implementation for User Story 5
 
-- [ ] T063 [P] [US5] Create ThemeToggle component in components/ThemeToggle.tsx with switch UI
-- [ ] T064 [US5] Create settings screen in app/settings/index.tsx with theme toggle
-- [ ] T065 [US5] Implement theme switching logic in useTheme hook: toggle between 'light' and 'dark'
-- [ ] T066 [US5] Apply dark class to root element based on theme context
-- [ ] T067 [US5] Ensure all screens use Tailwind classes with dark: variants (bg-white dark:bg-gray-900, text-gray-900 dark:text-white)
-- [ ] T068 [US5] Ensure all components use text-primary-600 dark:text-primary-400 for accent color
-- [ ] T069 [US5] Implement theme persistence: save to settings:preferences on change, load on app launch
-- [ ] T070 [US5] Add theme toggle to settings screen with current theme indicator
-- [ ] T071 [US5] Verify theme updates across all screens without disrupting active workout
+- [x] T063 [P] [US5] Create ThemeToggle component in components/ThemeToggle.tsx with switch UI
+- [x] T064 [US5] Create settings screen in app/settings/index.tsx with theme toggle
+- [x] T065 [US5] Implement theme switching logic in useTheme hook: toggle between 'light' and 'dark'
+- [x] T066 [US5] Apply dark class to root element based on theme context
+- [x] T067 [US5] Ensure all screens use Tailwind classes with dark: variants (bg-white dark:bg-gray-900, text-gray-900 dark:text-white)
+- [x] T068 [US5] Ensure all components use text-primary-600 dark:text-primary-400 for accent color
+- [x] T069 [US5] Implement theme persistence: save to settings:preferences on change, load on app launch
+- [x] T070 [US5] Add theme toggle to settings screen with current theme indicator
+- [x] T071 [US5] Verify theme updates across all screens without disrupting active workout
 
 **Checkpoint**: User Story 5 complete - Users can customize theme with full persistence
 

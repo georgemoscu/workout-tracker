@@ -76,15 +76,23 @@ export default function Index() {
             Your workouts!
           </Text>
 
-          <TouchableOpacity
-            onPress={() => setShowDatePickerRange(true)}
-            className="flex-row items-center gap-x-2 p-2 border border-gray-300 dark:border-gray-700 rounded-lg"
-          >
-            <Text className="text-xl text-gray-900 dark:text-white">
-              12 March
-            </Text>
-            <Lucide name="calendar" size={24} color="currentColor" />
-          </TouchableOpacity>
+          <View className="flex-row gap-2">
+            <TouchableOpacity
+              onPress={() => router.push("/settings/index")}
+              className="p-2 border border-gray-300 dark:border-gray-700 rounded-lg"
+            >
+              <Lucide name="settings" size={24} color="currentColor" />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => setShowDatePickerRange(true)}
+              className="flex-row items-center gap-x-2 p-2 border border-gray-300 dark:border-gray-700 rounded-lg"
+            >
+              <Text className="text-xl text-gray-900 dark:text-white">
+                12 March
+              </Text>
+              <Lucide name="calendar" size={24} color="currentColor" />
+            </TouchableOpacity>
+          </View>
         </View>
 
         {/* Start Workout Button - 2-tap requirement (tap 1) */}

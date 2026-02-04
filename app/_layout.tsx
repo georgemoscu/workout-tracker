@@ -1,9 +1,8 @@
 import "@/assets/css/globals.css";
+import { ThemeProvider } from "@/lib/hooks/useTheme";
+import { asyncStoragePersister, queryClient } from "@/lib/queryClient";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { Stack } from "expo-router";
-import { QueryClientProvider } from '@tanstack/react-query';
-import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
-import { queryClient, asyncStoragePersister } from '@/lib/queryClient';
-import { ThemeProvider } from '@/lib/hooks/useTheme';
 
 export default function RootLayout() {
   return (
@@ -53,6 +52,13 @@ export default function RootLayout() {
             name="workout/[id]"
             options={{
               title: "Workout Details",
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="settings/index"
+            options={{
+              title: "Settings",
               headerShown: false,
             }}
           />
