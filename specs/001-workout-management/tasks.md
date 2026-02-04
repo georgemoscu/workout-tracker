@@ -118,18 +118,18 @@ Mobile single-project structure:
 
 ### Implementation for User Story 3
 
-- [ ] T040 [P] [US3] Create useWorkouts hook in lib/hooks/useWorkouts.ts with TanStack Query infinite query for pagination
-- [ ] T041 [P] [US3] Create WorkoutCard component in components/WorkoutCard.tsx to display workout summary (date, duration, exercise count)
-- [ ] T042 [US3] Create workout history screen in app/history/index.tsx with paginated FlatList
-- [ ] T043 [US3] Implement workout history loading: use getWorkoutIds with pagination, lazy load workouts
-- [ ] T044 [US3] Create workout detail screen in app/history/[id].tsx to display full workout with all exercises and sets
-- [ ] T045 [US3] Add edit mode toggle in workout detail screen
-- [ ] T046 [US3] Make all workout fields editable in edit mode (exercises, sets, reps, muscle groups, machines)
-- [ ] T047 [US3] Implement workout update logic: call updateWorkout with modified data, persist to AsyncStorage
-- [ ] T048 [US3] Allow adding new exercise to past workout in edit mode
-- [ ] T049 [US3] Allow removing exercise from past workout in edit mode
-- [ ] T050 [US3] Add navigation from history list to workout detail screen
-- [ ] T051 [US3] Implement optimistic updates with TanStack Query for instant UI feedback
+- [x] T040 [P] [US3] Create useWorkouts hook in lib/hooks/useWorkouts.ts with TanStack Query infinite query for pagination
+- [x] T041 [P] [US3] Create WorkoutCard component in components/WorkoutCard.tsx to display workout summary (date, duration, exercise count)
+- [x] T042 [US3] Create workout history screen in app/history/index.tsx with paginated FlatList
+- [x] T043 [US3] Implement workout history loading: use getWorkoutIds with pagination, lazy load workouts
+- [x] T044 [US3] Create workout detail screen in app/workout/[id].tsx to display full workout with all exercises and sets
+- [x] T045 [US3] Add edit mode toggle in workout detail screen
+- [x] T046 [US3] Make all workout fields editable in edit mode (exercises, sets, reps, muscle groups, machines)
+- [x] T047 [US3] Implement workout update logic: call updateWorkout with modified data, persist to AsyncStorage
+- [x] T048 [US3] Allow adding new exercise to past workout in edit mode
+- [x] T049 [US3] Allow removing exercise from past workout in edit mode
+- [x] T050 [US3] Add navigation from history list to workout detail screen
+- [x] T051 [US3] Implement optimistic updates with TanStack Query for instant UI feedback
 
 **Checkpoint**: User Story 3 complete - Users can review and edit workout history
 

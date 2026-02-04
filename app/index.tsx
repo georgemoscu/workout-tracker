@@ -1,4 +1,4 @@
-import WorkoutCard from "@/components/WorkoutCard";
+import { WorkoutCard } from "@/components/WorkoutCard";
 import { useActiveWorkout } from "@/lib/hooks/useActiveWorkout";
 import { Lucide } from "@react-native-vector-icons/lucide";
 import { Link, useRouter } from "expo-router";
