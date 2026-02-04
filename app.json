@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "workout-tracker",
+    "name": "Workout Tracker",
     "slug": "workout-tracker",
-    "version": "1.0.0",
+    "version": "0.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "workouttracker",
+    "scheme": "tracker",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
